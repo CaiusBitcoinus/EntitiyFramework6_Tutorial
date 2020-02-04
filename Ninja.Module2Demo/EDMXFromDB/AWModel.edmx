@@ -1,0 +1,414 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="dbRapoarte_ViziteClientiModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tbl_BusinessPartner">
+          <Key>
+            <PropertyRef Name="SR_ID_pk" />
+          </Key>
+          <Property Name="SR_ID_pk" Type="bigint" Nullable="false" />
+          <Property Name="BP_PlaceholderID" Type="varchar" MaxLength="9" StoreGeneratedPattern="Computed" />
+          <Property Name="BP_ID" Type="nvarchar" MaxLength="9" />
+          <Property Name="BP_Name" Type="nvarchar" MaxLength="35" />
+          <Property Name="BP_UST_Nu" Type="nvarchar" MaxLength="100" />
+          <Property Name="BP_EmployeesNr" Type="int" />
+          <Property Name="BP_EMSPotential" Type="nvarchar" MaxLength="3" />
+          <Property Name="BP_EMPSPotential_Def" Type="nvarchar" MaxLength="50" />
+          <Property Name="BP_Rating" Type="int" />
+          <Property Name="BP_Rating_Def" Type="nvarchar" MaxLength="10" />
+          <Property Name="BP_BussinesBranche" Type="nvarchar" MaxLength="10" />
+          <Property Name="BP_BussinesBranche_Def" Type="nvarchar" MaxLength="30" />
+          <Property Name="BP_Language" Type="nvarchar" MaxLength="3" />
+          <Property Name="BP_Currency" Type="nvarchar" MaxLength="3" />
+          <Property Name="BP_Street" Type="nvarchar" MaxLength="30" />
+          <Property Name="BP_HouseNr" Type="nvarchar" MaxLength="10" />
+          <Property Name="BP_ZipCode" Type="nvarchar" MaxLength="10" />
+          <Property Name="BP_City" Type="nvarchar" MaxLength="90" />
+          <Property Name="BP_Country" Type="nvarchar" MaxLength="50" />
+          <Property Name="BP_Website" Type="nvarchar" MaxLength="150" />
+          <Property Name="BP_CurrentType" Type="nvarchar" MaxLength="100" />
+          <Property Name="is_Deleted" Type="nvarchar" MaxLength="5" />
+          <Property Name="TimestampInregistrare" Type="datetime" />
+          <Property Name="PINDataEntry" Type="nvarchar" MaxLength="300" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'dbRapoarte_ViziteClienti.dbo.tbl_CBP_Attributes' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="tbl_CBP_Attributes">
+          <Key>
+            <PropertyRef Name="CBP_ASP_Code" />
+          </Key>
+          <Property Name="CBP_ASP_Code" Type="nvarchar" MaxLength="9" Nullable="false" />
+          <Property Name="Att_Code" Type="nvarchar" MaxLength="10" />
+          <Property Name="Att_Def" Type="nvarchar" MaxLength="50" />
+          <Property Name="Att_Value" Type="nvarchar" MaxLength="3" />
+          <Property Name="is_Deleted" Type="nvarchar" MaxLength="5" />
+          <Property Name="TimestampInregistrare" Type="datetime" />
+          <Property Name="PINDataEntry" Type="nvarchar" MaxLength="300" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'dbRapoarte_ViziteClienti.dbo.tbl_CBP_Categories' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="tbl_CBP_Categories">
+          <Key>
+            <PropertyRef Name="CBP_ASP_Code" />
+          </Key>
+          <Property Name="CBP_ASP_Code" Type="nvarchar" MaxLength="9" Nullable="false" />
+          <Property Name="Cat_Code" Type="nvarchar" MaxLength="5" />
+          <Property Name="Cat_Def" Type="nvarchar" MaxLength="50" />
+          <Property Name="is_Deleted" Type="nvarchar" MaxLength="5" />
+          <Property Name="TimestampInregistrare" Type="datetime" />
+          <Property Name="PINDataEntry" Type="nvarchar" MaxLength="300" />
+        </EntityType>
+        <EntityType Name="tbl_Contacts_BusinessPartner">
+          <Key>
+            <PropertyRef Name="CBP_ID_PK" />
+          </Key>
+          <Property Name="SR_ID_pk" Type="bigint" Nullable="false" />
+          <Property Name="CBP_ID_PK" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CT_PlaceholderID" Type="varchar" MaxLength="9" StoreGeneratedPattern="Computed" />
+          <Property Name="CBP_ASP_Code" Type="nvarchar" MaxLength="9" />
+          <Property Name="CBP_FullName" Type="nvarchar" MaxLength="30" />
+          <Property Name="CBP_Position" Type="nvarchar" MaxLength="50" />
+          <Property Name="CBP_Departament" Type="nvarchar" MaxLength="50" />
+          <Property Name="CBP_Email" Type="nvarchar" MaxLength="100" />
+          <Property Name="CBP_Phone" Type="nvarchar" MaxLength="20" />
+          <Property Name="CBP_Mobile" Type="nvarchar" MaxLength="20" />
+          <Property Name="CBP_BuyerRole" Type="nvarchar" MaxLength="3" />
+          <Property Name="CBP_BuyerRole_Def" Type="nvarchar" MaxLength="30" />
+          <Property Name="CBP_CurrentType" Type="nvarchar" MaxLength="100" />
+          <Property Name="is_Deleted" Type="nvarchar" MaxLength="5" />
+          <Property Name="TimestampInregistrare" Type="datetime" />
+          <Property Name="PINDataEntry" Type="nvarchar" MaxLength="300" />
+        </EntityType>
+        <EntityType Name="tbl_ParticipantsLacon">
+          <Key>
+            <PropertyRef Name="PL_ID_PK" />
+          </Key>
+          <Property Name="SR_ID_pk" Type="bigint" Nullable="false" />
+          <Property Name="PL_ID_PK" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PL_LaconCode" Type="nvarchar" MaxLength="9" Nullable="false" />
+          <Property Name="PL_FullName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="PL_InformationIntegrity_Type" Type="nvarchar" MaxLength="100" />
+          <Property Name="is_Deleted" Type="nvarchar" MaxLength="5" />
+          <Property Name="TimestampInregistrare" Type="datetime" />
+          <Property Name="PINDataEntry" Type="nvarchar" MaxLength="300" />
+        </EntityType>
+        <EntityType Name="tbl_SalesReport">
+          <Key>
+            <PropertyRef Name="SR_ID_pk" />
+          </Key>
+          <Property Name="SR_ID_pk" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SR_DateTime" Type="datetime" Nullable="false" />
+          <Property Name="SR_Author" Type="nvarchar" MaxLength="9" />
+          <Property Name="SR_Author_Name" Type="nvarchar" MaxLength="35" />
+          <Property Name="SR_ReasonOfVisit" Type="nvarchar" MaxLength="30" />
+          <Property Name="SR_Subject" Type="nvarchar(max)" />
+          <Property Name="SR_LocationOrt" Type="nvarchar" MaxLength="100" />
+          <Property Name="SR_NextSteps" Type="nvarchar(max)" />
+          <Property Name="SR_Fazit" Type="nvarchar(max)" />
+          <Property Name="SR_Result" Type="int" />
+          <Property Name="SR_Result_Def" Type="nvarchar" MaxLength="50" />
+          <Property Name="SR_CurrentStatus" Type="int" />
+          <Property Name="SR_CurrentStatus_Def" Type="nvarchar" MaxLength="50" />
+          <Property Name="SR_InformationIntegrity_Type" Type="nvarchar" MaxLength="100" />
+          <Property Name="SR_CurrentType" Type="nvarchar" MaxLength="100" />
+          <Property Name="is_Deleted" Type="nvarchar" MaxLength="5" />
+          <Property Name="TimestampInregistrare" Type="datetime" />
+          <Property Name="PINDataEntry" Type="nvarchar" MaxLength="300" />
+        </EntityType>
+        <EntityContainer Name="dbRapoarte_ViziteClientiModelStoreContainer">
+          <EntitySet Name="tbl_BusinessPartner" EntityType="Self.tbl_BusinessPartner" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Contacts_BusinessPartner" EntityType="Self.tbl_Contacts_BusinessPartner" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_ParticipantsLacon" EntityType="Self.tbl_ParticipantsLacon" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_SalesReport" EntityType="Self.tbl_SalesReport" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_CBP_Attributes" EntityType="Self.tbl_CBP_Attributes" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT
+    [tbl_CBP_Attributes].[CBP_ASP_Code] AS [CBP_ASP_Code],
+    [tbl_CBP_Attributes].[Att_Code] AS [Att_Code],
+    [tbl_CBP_Attributes].[Att_Def] AS [Att_Def],
+    [tbl_CBP_Attributes].[Att_Value] AS [Att_Value],
+    [tbl_CBP_Attributes].[is_Deleted] AS [is_Deleted],
+    [tbl_CBP_Attributes].[TimestampInregistrare] AS [TimestampInregistrare],
+    [tbl_CBP_Attributes].[PINDataEntry] AS [PINDataEntry]
+    FROM [dbo].[tbl_CBP_Attributes] AS [tbl_CBP_Attributes]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="tbl_CBP_Categories" EntityType="Self.tbl_CBP_Categories" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT
+    [tbl_CBP_Categories].[CBP_ASP_Code] AS [CBP_ASP_Code],
+    [tbl_CBP_Categories].[Cat_Code] AS [Cat_Code],
+    [tbl_CBP_Categories].[Cat_Def] AS [Cat_Def],
+    [tbl_CBP_Categories].[is_Deleted] AS [is_Deleted],
+    [tbl_CBP_Categories].[TimestampInregistrare] AS [TimestampInregistrare],
+    [tbl_CBP_Categories].[PINDataEntry] AS [PINDataEntry]
+    FROM [dbo].[tbl_CBP_Categories] AS [tbl_CBP_Categories]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="dbRapoarte_ViziteClientiModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="tbl_BusinessPartner">
+          <Key>
+            <PropertyRef Name="SR_ID_pk" />
+          </Key>
+          <Property Name="SR_ID_pk" Type="Int64" Nullable="false" />
+          <Property Name="BP_PlaceholderID" Type="String" MaxLength="9" FixedLength="false" Unicode="false" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="BP_ID" Type="String" MaxLength="9" FixedLength="false" Unicode="true" />
+          <Property Name="BP_Name" Type="String" MaxLength="35" FixedLength="false" Unicode="true" />
+          <Property Name="BP_UST_Nu" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="BP_EmployeesNr" Type="Int32" />
+          <Property Name="BP_EMSPotential" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Name="BP_EMPSPotential_Def" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="BP_Rating" Type="Int32" />
+          <Property Name="BP_Rating_Def" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="BP_BussinesBranche" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="BP_BussinesBranche_Def" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="BP_Language" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Name="BP_Currency" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Name="BP_Street" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="BP_HouseNr" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="BP_ZipCode" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="BP_City" Type="String" MaxLength="90" FixedLength="false" Unicode="true" />
+          <Property Name="BP_Country" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="BP_Website" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="BP_CurrentType" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="is_Deleted" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="TimestampInregistrare" Type="DateTime" Precision="3" />
+          <Property Name="PINDataEntry" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tbl_Contacts_BusinessPartner">
+          <Key>
+            <PropertyRef Name="CBP_ID_PK" />
+          </Key>
+          <Property Name="SR_ID_pk" Type="Int64" Nullable="false" />
+          <Property Name="CBP_ID_PK" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CT_PlaceholderID" Type="String" MaxLength="9" FixedLength="false" Unicode="false" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="CBP_ASP_Code" Type="String" MaxLength="9" FixedLength="false" Unicode="true" />
+          <Property Name="CBP_FullName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="CBP_Position" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CBP_Departament" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CBP_Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CBP_Phone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="CBP_Mobile" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="CBP_BuyerRole" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Name="CBP_BuyerRole_Def" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="CBP_CurrentType" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="is_Deleted" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="TimestampInregistrare" Type="DateTime" Precision="3" />
+          <Property Name="PINDataEntry" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tbl_ParticipantsLacon">
+          <Key>
+            <PropertyRef Name="PL_ID_PK" />
+          </Key>
+          <Property Name="SR_ID_pk" Type="Int64" Nullable="false" />
+          <Property Name="PL_ID_PK" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PL_LaconCode" Type="String" MaxLength="9" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PL_FullName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PL_InformationIntegrity_Type" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="is_Deleted" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="TimestampInregistrare" Type="DateTime" Precision="3" />
+          <Property Name="PINDataEntry" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tbl_SalesReport">
+          <Key>
+            <PropertyRef Name="SR_ID_pk" />
+          </Key>
+          <Property Name="SR_ID_pk" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SR_DateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="SR_Author" Type="String" MaxLength="9" FixedLength="false" Unicode="true" />
+          <Property Name="SR_Author_Name" Type="String" MaxLength="35" FixedLength="false" Unicode="true" />
+          <Property Name="SR_ReasonOfVisit" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="SR_Subject" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SR_LocationOrt" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="SR_NextSteps" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SR_Fazit" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SR_Result" Type="Int32" />
+          <Property Name="SR_Result_Def" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SR_CurrentStatus" Type="Int32" />
+          <Property Name="SR_CurrentStatus_Def" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SR_InformationIntegrity_Type" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="SR_CurrentType" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="is_Deleted" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="TimestampInregistrare" Type="DateTime" Precision="3" />
+          <Property Name="PINDataEntry" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tbl_CBP_Attributes">
+          <Key>
+            <PropertyRef Name="CBP_ASP_Code" />
+          </Key>
+          <Property Name="CBP_ASP_Code" Type="String" MaxLength="9" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Att_Code" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Att_Def" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Att_Value" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Name="is_Deleted" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="TimestampInregistrare" Type="DateTime" Precision="3" />
+          <Property Name="PINDataEntry" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tbl_CBP_Categories">
+          <Key>
+            <PropertyRef Name="CBP_ASP_Code" />
+          </Key>
+          <Property Name="CBP_ASP_Code" Type="String" MaxLength="9" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Cat_Code" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="Cat_Def" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="is_Deleted" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="TimestampInregistrare" Type="DateTime" Precision="3" />
+          <Property Name="PINDataEntry" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityContainer Name="dbRapoarte_ViziteClientiEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tbl_BusinessPartner" EntityType="Self.tbl_BusinessPartner" />
+          <EntitySet Name="tbl_Contacts_BusinessPartner" EntityType="Self.tbl_Contacts_BusinessPartner" />
+          <EntitySet Name="tbl_ParticipantsLacon" EntityType="Self.tbl_ParticipantsLacon" />
+          <EntitySet Name="tbl_SalesReport" EntityType="Self.tbl_SalesReport" />
+          <EntitySet Name="tbl_CBP_Attributes" EntityType="Self.tbl_CBP_Attributes" />
+          <EntitySet Name="tbl_CBP_Categories" EntityType="Self.tbl_CBP_Categories" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="dbRapoarte_ViziteClientiModelStoreContainer" CdmEntityContainer="dbRapoarte_ViziteClientiEntities">
+          <EntitySetMapping Name="tbl_BusinessPartner">
+            <EntityTypeMapping TypeName="dbRapoarte_ViziteClientiModel.tbl_BusinessPartner">
+              <MappingFragment StoreEntitySet="tbl_BusinessPartner">
+                <ScalarProperty Name="SR_ID_pk" ColumnName="SR_ID_pk" />
+                <ScalarProperty Name="BP_PlaceholderID" ColumnName="BP_PlaceholderID" />
+                <ScalarProperty Name="BP_ID" ColumnName="BP_ID" />
+                <ScalarProperty Name="BP_Name" ColumnName="BP_Name" />
+                <ScalarProperty Name="BP_UST_Nu" ColumnName="BP_UST_Nu" />
+                <ScalarProperty Name="BP_EmployeesNr" ColumnName="BP_EmployeesNr" />
+                <ScalarProperty Name="BP_EMSPotential" ColumnName="BP_EMSPotential" />
+                <ScalarProperty Name="BP_EMPSPotential_Def" ColumnName="BP_EMPSPotential_Def" />
+                <ScalarProperty Name="BP_Rating" ColumnName="BP_Rating" />
+                <ScalarProperty Name="BP_Rating_Def" ColumnName="BP_Rating_Def" />
+                <ScalarProperty Name="BP_BussinesBranche" ColumnName="BP_BussinesBranche" />
+                <ScalarProperty Name="BP_BussinesBranche_Def" ColumnName="BP_BussinesBranche_Def" />
+                <ScalarProperty Name="BP_Language" ColumnName="BP_Language" />
+                <ScalarProperty Name="BP_Currency" ColumnName="BP_Currency" />
+                <ScalarProperty Name="BP_Street" ColumnName="BP_Street" />
+                <ScalarProperty Name="BP_HouseNr" ColumnName="BP_HouseNr" />
+                <ScalarProperty Name="BP_ZipCode" ColumnName="BP_ZipCode" />
+                <ScalarProperty Name="BP_City" ColumnName="BP_City" />
+                <ScalarProperty Name="BP_Country" ColumnName="BP_Country" />
+                <ScalarProperty Name="BP_Website" ColumnName="BP_Website" />
+                <ScalarProperty Name="BP_CurrentType" ColumnName="BP_CurrentType" />
+                <ScalarProperty Name="is_Deleted" ColumnName="is_Deleted" />
+                <ScalarProperty Name="TimestampInregistrare" ColumnName="TimestampInregistrare" />
+                <ScalarProperty Name="PINDataEntry" ColumnName="PINDataEntry" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Contacts_BusinessPartner">
+            <EntityTypeMapping TypeName="dbRapoarte_ViziteClientiModel.tbl_Contacts_BusinessPartner">
+              <MappingFragment StoreEntitySet="tbl_Contacts_BusinessPartner">
+                <ScalarProperty Name="SR_ID_pk" ColumnName="SR_ID_pk" />
+                <ScalarProperty Name="CBP_ID_PK" ColumnName="CBP_ID_PK" />
+                <ScalarProperty Name="CT_PlaceholderID" ColumnName="CT_PlaceholderID" />
+                <ScalarProperty Name="CBP_ASP_Code" ColumnName="CBP_ASP_Code" />
+                <ScalarProperty Name="CBP_FullName" ColumnName="CBP_FullName" />
+                <ScalarProperty Name="CBP_Position" ColumnName="CBP_Position" />
+                <ScalarProperty Name="CBP_Departament" ColumnName="CBP_Departament" />
+                <ScalarProperty Name="CBP_Email" ColumnName="CBP_Email" />
+                <ScalarProperty Name="CBP_Phone" ColumnName="CBP_Phone" />
+                <ScalarProperty Name="CBP_Mobile" ColumnName="CBP_Mobile" />
+                <ScalarProperty Name="CBP_BuyerRole" ColumnName="CBP_BuyerRole" />
+                <ScalarProperty Name="CBP_BuyerRole_Def" ColumnName="CBP_BuyerRole_Def" />
+                <ScalarProperty Name="CBP_CurrentType" ColumnName="CBP_CurrentType" />
+                <ScalarProperty Name="is_Deleted" ColumnName="is_Deleted" />
+                <ScalarProperty Name="TimestampInregistrare" ColumnName="TimestampInregistrare" />
+                <ScalarProperty Name="PINDataEntry" ColumnName="PINDataEntry" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_ParticipantsLacon">
+            <EntityTypeMapping TypeName="dbRapoarte_ViziteClientiModel.tbl_ParticipantsLacon">
+              <MappingFragment StoreEntitySet="tbl_ParticipantsLacon">
+                <ScalarProperty Name="SR_ID_pk" ColumnName="SR_ID_pk" />
+                <ScalarProperty Name="PL_ID_PK" ColumnName="PL_ID_PK" />
+                <ScalarProperty Name="PL_LaconCode" ColumnName="PL_LaconCode" />
+                <ScalarProperty Name="PL_FullName" ColumnName="PL_FullName" />
+                <ScalarProperty Name="PL_InformationIntegrity_Type" ColumnName="PL_InformationIntegrity_Type" />
+                <ScalarProperty Name="is_Deleted" ColumnName="is_Deleted" />
+                <ScalarProperty Name="TimestampInregistrare" ColumnName="TimestampInregistrare" />
+                <ScalarProperty Name="PINDataEntry" ColumnName="PINDataEntry" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_SalesReport">
+            <EntityTypeMapping TypeName="dbRapoarte_ViziteClientiModel.tbl_SalesReport">
+              <MappingFragment StoreEntitySet="tbl_SalesReport">
+                <ScalarProperty Name="SR_ID_pk" ColumnName="SR_ID_pk" />
+                <ScalarProperty Name="SR_DateTime" ColumnName="SR_DateTime" />
+                <ScalarProperty Name="SR_Author" ColumnName="SR_Author" />
+                <ScalarProperty Name="SR_Author_Name" ColumnName="SR_Author_Name" />
+                <ScalarProperty Name="SR_ReasonOfVisit" ColumnName="SR_ReasonOfVisit" />
+                <ScalarProperty Name="SR_Subject" ColumnName="SR_Subject" />
+                <ScalarProperty Name="SR_LocationOrt" ColumnName="SR_LocationOrt" />
+                <ScalarProperty Name="SR_NextSteps" ColumnName="SR_NextSteps" />
+                <ScalarProperty Name="SR_Fazit" ColumnName="SR_Fazit" />
+                <ScalarProperty Name="SR_Result" ColumnName="SR_Result" />
+                <ScalarProperty Name="SR_Result_Def" ColumnName="SR_Result_Def" />
+                <ScalarProperty Name="SR_CurrentStatus" ColumnName="SR_CurrentStatus" />
+                <ScalarProperty Name="SR_CurrentStatus_Def" ColumnName="SR_CurrentStatus_Def" />
+                <ScalarProperty Name="SR_InformationIntegrity_Type" ColumnName="SR_InformationIntegrity_Type" />
+                <ScalarProperty Name="SR_CurrentType" ColumnName="SR_CurrentType" />
+                <ScalarProperty Name="is_Deleted" ColumnName="is_Deleted" />
+                <ScalarProperty Name="TimestampInregistrare" ColumnName="TimestampInregistrare" />
+                <ScalarProperty Name="PINDataEntry" ColumnName="PINDataEntry" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_CBP_Attributes">
+            <EntityTypeMapping TypeName="dbRapoarte_ViziteClientiModel.tbl_CBP_Attributes">
+              <MappingFragment StoreEntitySet="tbl_CBP_Attributes">
+                <ScalarProperty Name="CBP_ASP_Code" ColumnName="CBP_ASP_Code" />
+                <ScalarProperty Name="Att_Code" ColumnName="Att_Code" />
+                <ScalarProperty Name="Att_Def" ColumnName="Att_Def" />
+                <ScalarProperty Name="Att_Value" ColumnName="Att_Value" />
+                <ScalarProperty Name="is_Deleted" ColumnName="is_Deleted" />
+                <ScalarProperty Name="TimestampInregistrare" ColumnName="TimestampInregistrare" />
+                <ScalarProperty Name="PINDataEntry" ColumnName="PINDataEntry" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_CBP_Categories">
+            <EntityTypeMapping TypeName="dbRapoarte_ViziteClientiModel.tbl_CBP_Categories">
+              <MappingFragment StoreEntitySet="tbl_CBP_Categories">
+                <ScalarProperty Name="CBP_ASP_Code" ColumnName="CBP_ASP_Code" />
+                <ScalarProperty Name="Cat_Code" ColumnName="Cat_Code" />
+                <ScalarProperty Name="Cat_Def" ColumnName="Cat_Def" />
+                <ScalarProperty Name="is_Deleted" ColumnName="is_Deleted" />
+                <ScalarProperty Name="TimestampInregistrare" ColumnName="TimestampInregistrare" />
+                <ScalarProperty Name="PINDataEntry" ColumnName="PINDataEntry" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

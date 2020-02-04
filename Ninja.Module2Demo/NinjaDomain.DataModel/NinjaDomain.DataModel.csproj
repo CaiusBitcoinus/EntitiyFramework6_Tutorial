@@ -51,7 +51,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="Migrations\202002040728092_Initial.cs" />
+    <Compile Include="Migrations\202002040728092_Initial.designer.cs">
+      <DependentUpon>202002040728092_Initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202002040817042_AddBirthdayToNinja.cs" />
+    <Compile Include="Migrations\202002040817042_AddBirthdayToNinja.designer.cs">
+      <DependentUpon>202002040817042_AddBirthdayToNinja.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="NinjaContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -63,6 +72,14 @@
       <Project>{C611843A-EDD9-487D-B2D0-0EB2A3F6012C}</Project>
       <Name>NinjaDomain.Classes</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202002040728092_Initial.resx">
+      <DependentUpon>202002040728092_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002040817042_AddBirthdayToNinja.resx">
+      <DependentUpon>202002040817042_AddBirthdayToNinja.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
