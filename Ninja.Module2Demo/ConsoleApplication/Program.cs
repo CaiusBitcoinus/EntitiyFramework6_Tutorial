@@ -13,8 +13,9 @@ namespace ConsoleApplication
         static void Main(string[] args)
         {
             //InsertNinja();
-            SimpleNinjaQueries();
-
+            //SimpleNinjaQueries();
+            //QueryAndUpdateNinja();
+            QueryAndUpdateNinjaDisconnected();
             Console.ReadLine();
         }
 
@@ -100,6 +101,38 @@ namespace ConsoleApplication
                 //    }
                 #endregion
 
+            }
+        }
+
+        private static void QueryAndUpdateNinja()
+        {
+            using(var context = new NinjaContext())
+            {
+                context.Database.Log = Console.WriteLine;
+                var ninja = context.Ninjas.FirstOrDefault();
+                ninja.ServedInOniwaban = (!ninja.ServedInOniwaban);
+                context.SaveChanges();
+            }
+        }
+
+        private static void QueryAndUpdateNinjaDisconnected()
+        {
+            Ninja ninja;
+
+            using(var context = new NinjaContext())
+            {
+                context.Database.Log = Console.WriteLine;
+                ninja = context.Ninjas.FirstOrDefault();
+            }
+
+            ninja.ServedInOniwaban = (!ninja.ServedInOniwaban);
+
+            using(var context= new NinjaContext())
+            {
+                context.Database.Log = Console.WriteLine;
+                context.Ninjas.Attach(ninja);
+                context.Entry(ninja).State = System.Data.Entity.EntityState.Modified;
+                context.SaveChanges();
             }
         }
     }
