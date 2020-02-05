@@ -3,8 +3,7 @@ using NinjaDomain.DataModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Data.Entity;
 
 namespace ConsoleApplication
 {
@@ -15,7 +14,13 @@ namespace ConsoleApplication
             //InsertNinja();
             //SimpleNinjaQueries();
             //QueryAndUpdateNinja();
-            QueryAndUpdateNinjaDisconnected();
+            //QueryAndUpdateNinjaDisconnected();
+            //RetrieveDataWithFind();
+            //DeleteNinja();
+            //DeleteNinjaSecondVersion();
+            //InsertNinjaWithEquipment();
+            //SimpleNinjaGraphQuery();
+            ProjectionQuery();
             Console.ReadLine();
         }
 
@@ -131,8 +136,148 @@ namespace ConsoleApplication
             {
                 context.Database.Log = Console.WriteLine;
                 context.Ninjas.Attach(ninja);
-                context.Entry(ninja).State = System.Data.Entity.EntityState.Modified;
+                context.Entry(ninja).State = EntityState.Modified;
                 context.SaveChanges();
+            }
+        }
+
+        private static void RetrieveDataWithFind()
+        {
+            var keyval = 4;
+
+            using (var context = new NinjaContext())
+            {
+                context.Database.Log = Console.WriteLine;
+                var ninja = context.Ninjas.Find(keyval);
+                Console.WriteLine("After Find #1: "+ninja.Name);
+
+                var someNinja = context.Ninjas.Find(keyval);
+                Console.WriteLine("After Find #2: " + someNinja.Name);
+                ninja = null;
+            }
+        }
+
+        private static void DeleteNinja()
+        {
+            using(var context = new NinjaContext())
+            {
+                context.Database.Log = Console.WriteLine;
+                var ninja = context.Ninjas.FirstOrDefault();
+                context.Ninjas.Remove(ninja);
+                context.SaveChanges();
+            }
+        }
+
+        private static void DeleteNinjaSecondVersion()
+        {
+            Ninja ninja;
+
+            using (var context = new NinjaContext())
+            {
+                context.Database.Log = Console.WriteLine;
+                ninja = context.Ninjas.FirstOrDefault();
+                //context.Ninjas.Remove(ninja);
+                //context.SaveChanges();
+            }
+
+            using(var context = new NinjaContext())
+            {
+                context.Database.Log = Console.WriteLine;
+                //context.Ninjas.Attach(ninja); //this is VERY Important. when a "context" object is closed he dosen't keep in mind of old objects such as ninja from below.
+                //context.Ninjas.Remove(ninja);
+
+                /*
+                 * As the process below is pretty tiresome, it is easier to go like this...
+                 */
+                context.Entry(ninja).State = EntityState.Deleted;
+                context.SaveChanges();
+            }
+        }
+
+        private static void InsertNinjaWithEquipment()
+        {
+            using (var context = new NinjaContext())
+            {
+                context.Database.Log = Console.WriteLine;
+
+                var ninja = new Ninja
+                {
+                    Name = "Kacy Catanzaro",
+                    ServedInOniwaban = false,
+                    DateOfBirth = new DateTime(1990, 1, 14),
+                    ClanId = 1
+                };
+
+                var muscles = new NinjaEquipment
+                {
+                    Name = "Muscles",
+                    Type = EquipmentType.Tool,
+                };
+
+                var spunk = new NinjaEquipment
+                {
+                    Name = "Spunk",
+                    Type = EquipmentType.Weapon
+                };
+
+                context.Ninjas.Add(ninja);
+                ninja.EquipmentOwned.Add(muscles);
+                ninja.EquipmentOwned.Add(spunk);
+                context.SaveChanges();
+            }
+        }
+
+        private static void SimpleNinjaGraphQuery()
+        {
+            using(var context = new NinjaContext())
+            {
+                context.Database.Log = Console.WriteLine;
+
+                #region simply getting the ninja (we notice that we can't see his equipment)
+                //var ninja = context.Ninjas
+                //    .FirstOrDefault(n => n.Name.StartsWith("Kacy"));
+                #endregion
+
+                #region [Eager loading]
+                //var ninja = context.Ninjas.Include(n => n.EquipmentOwned)
+                //    .FirstOrDefault(n => n.Name.StartsWith("Kacy"));
+                #endregion
+
+                #region [Explicit Loading]
+                //var ninja = context.Ninjas
+                //    .FirstOrDefault(n => n.Name.StartsWith("Kacy"));
+                //Console.WriteLine("Ninja Retrieved:" + ninja.Name);
+
+                //context.Entry(ninja).Collection(n => n.EquipmentOwned).Load();
+                #endregion
+
+                #region [Lazy Loading]
+                /*
+                 * For Lazy Loading to work dont forget to add 'virtual' keyword to the property you want EF to lazy load.
+                      ...
+                      public virtual List<NinjaEquipment> EquipmentOwned { get; set; }
+                      ...
+                 */
+                //var ninja = context.Ninjas
+                //    .FirstOrDefault(n => n.Name.StartsWith("Kacy"));
+                //Console.WriteLine("Ninja Retrieved:" + ninja.Name);
+
+                //Console.WriteLine("Ninja Equipment Count: {0}", ninja.EquipmentOwned.Count());
+                #endregion
+
+                #region [Projections]
+                //they have their own functions..look below
+                #endregion
+            }
+        }
+        private static void ProjectionQuery()
+        {
+            using (var context = new NinjaContext())
+            {
+                context.Database.Log = Console.WriteLine;
+                var ninjas = context.Ninjas
+                    .Select(n => new { n.Name, n.DateOfBirth, n.EquipmentOwned })
+                    .ToList();
             }
         }
     }
