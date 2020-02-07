@@ -2,10 +2,10 @@
 
 namespace NinjaDomain.Classes.Interfaces
 {
-    interface IModificationHistory
+    public interface IModificationHistory
     {
         DateTime DateModified { get; set; }
         DateTime DateCreated { get; set; }
-        bool isDirty { get; set; }
+        bool IsDirty { get; set; }
     }
 }
